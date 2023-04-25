@@ -6,9 +6,8 @@ public class InventoryObserver implements CheckoutObserverAPI {
 	@Override
 	public void update(BikeOrder bikeorder) {
 		// TODO Auto-generated method stub
-		if(bikeorder.getDeliveryType()==DeliveryType.Delivery) {
+		if(bikeorder.getDeliveryType()==BikeShippingType.Delivery) {
 			int stock=bikeorder.getBikeCount();
-			double total = bikeorder.getBikeCount();
 			if(stock<=7) {
 				bikeorder.setDeliveryCost(20);
 			}else  {

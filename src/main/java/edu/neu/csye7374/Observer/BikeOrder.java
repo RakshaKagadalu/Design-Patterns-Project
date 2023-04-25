@@ -3,6 +3,7 @@ package edu.neu.csye7374.Observer;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.neu.csye7374.Prototype.BikeShippingType;
 import neu.csye7374.src.State_Pattern.OrderStateAPI;
 
 public class BikeOrder implements OrderStateAPI {
@@ -12,7 +13,7 @@ public class BikeOrder implements OrderStateAPI {
 		private int bikeCount=0;
 		private double offerDiscount=0;
 		private double shippingCost;
-		private DeliveryType deliveryType;
+		private BikeShippingType deliveryType;
 		private static int counter=0;
 		private List<CheckoutObserverAPI> observers = new ArrayList<>();
 		private List<BikeAPI> bikeList = new ArrayList<>();
@@ -33,19 +34,19 @@ public class BikeOrder implements OrderStateAPI {
 		public BikeOrder() {
 			super();
 			this.bikeId = ++counter;
-			this.deliveryType = DeliveryType.Pickup;
+			this.deliveryType = BikeShippingType.Pickup;
 			this.state = getAwaitingConfirmationState();
 		}
 
 
-		public BikeOrder(double orderCost, int bikeCount, double shippingCost, DeliveryType deliveryType) {
+		public BikeOrder(double orderCost, int bikeCount, double shippingCost, BikeShippingType deliveryType) {
 			super();
 			this.bikeId = ++counter;
 			this.bikeOrderCost = orderCost;
 			this.bikeCount = bikeCount;		
 			this.deliveryType = deliveryType;
 			
-			if(deliveryType==DeliveryType.Pickup) {
+			if(deliveryType==BikeShippingType.Pickup) {
 				this.shippingCost = 0;
 			}else {
 				this.shippingCost = shippingCost;
@@ -146,7 +147,7 @@ public class BikeOrder implements OrderStateAPI {
 		}
 
 
-		public void setDeliveryType(DeliveryType deliveryType) {
+		public void setDeliveryType(BikeShippingType deliveryType) {
 			this.deliveryType = deliveryType;
 		}
 
