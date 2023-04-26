@@ -149,7 +149,7 @@ public class BikeDock implements BikeDockAPI {
                 "Demonstrating of Builder pattern. Delegating the responsibilty of creating Bikes objects to Bike Builder which implements build method and builds bike object for us");
         System.out.println("Using Factory and singleton pattern to get only single instance of Bike Builder object");
         BikeBuilder bikeBuilder = new BikeBuilder(1, "Harry Potter", 10, BikeCategory.Fiction, "JK Rowling");
-        BikeAPI bike = BikeFactory.getInstance().getObject(bikeBuilder);
+        BikeAPI bike = BikeFactoryAPI.getInstance().getObject(bikeBuilder);
         bikeList.add((Bike) bike);
         System.out.println(bike);
         FileUtil.appendEntryToFile(FILE_NAME, bikeBuilder);
@@ -187,34 +187,34 @@ public class BikeDock implements BikeDockAPI {
         order.setDeliveryType(DeliveryType.Delivery);
 
         bikeBuilder = new BikeBuilder(2, "Yogi Autobiography", 100, BikeCategory.Documentary, "Swami Dayananad");
-        bike = BikeFactory.getInstance().getObject(bikeBuilder);
+        bike = BikeFactoryAPI.getInstance().getObject(bikeBuilder);
         order.addBike(bike);
         System.out.println(order);
         bikeList.add((Bike) bike);
         FileUtil.appendEntryToFile(FILE_NAME, bikeBuilder);
 
         bikeBuilder = new BikeBuilder(3, "Alice in Wonderland", 150, BikeCategory.Fiction, "Scott Ross");
-        bike = BikeFactory.getInstance().getObject(bikeBuilder);
+        bike = BikeFactoryAPI.getInstance().getObject(bikeBuilder);
         order.addBike(bike);
         System.out.println(order);
         bikeList.add((Bike) bike);
         FileUtil.appendEntryToFile(FILE_NAME, bikeBuilder);
 
         bikeBuilder = new BikeBuilder(4, "Last Bout", 101, BikeCategory.Documentary, "Mc Gregor");
-        bike = BikeFactory.getInstance().getObject(bikeBuilder);
+        bike = BikeFactoryAPI.getInstance().getObject(bikeBuilder);
         order.addBike(bike);
         System.out.println(order);
         bikeList.add((Bike) bike);
         FileUtil.appendEntryToFile(FILE_NAME, bikeBuilder);
 
         bikeBuilder = new BikeBuilder(5, "Teresstial Lives", 200, BikeCategory.Scifi, "Phil Hughes");
-        bike = BikeFactory.getInstance().getObject(bikeBuilder);
+        bike = BikeFactoryAPI.getInstance().getObject(bikeBuilder);
         order.addBike(bike);
         System.out.println(order);
         bikeList.add((Bike) bike);
 
         bikeBuilder = new BikeBuilder(6, "Playing my way", 310, BikeCategory.Documentary, "Sachin Tendulkar");
-        bike = BikeFactory.getInstance().getObject(bikeBuilder);
+        bike = BikeFactoryAPI.getInstance().getObject(bikeBuilder);
         order.addBike(bike);
         System.out.println(order);
         bikeList.add((Bike) bike);
