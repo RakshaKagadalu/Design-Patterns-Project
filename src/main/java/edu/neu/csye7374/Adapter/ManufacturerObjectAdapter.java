@@ -21,7 +21,7 @@ public class ManufacturerObjectAdapter implements BikeAPI {
     @Override
     public int noOfBikesReleased() {
         // TODO Auto-generated method stub
-        return manufacturer.getNoOfBooksPublished();
+        return manufacturer.getNoOfBikesReleased();
     }
 
     @Override

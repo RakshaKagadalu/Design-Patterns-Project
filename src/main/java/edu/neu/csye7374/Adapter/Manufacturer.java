@@ -44,11 +44,11 @@ public class Manufacturer implements Cloneable {
         return this;
     }
 
-    public int getNoOfBooksPublished() {
+    public int getNoOfBikesReleased() {
         return manufacturingYeanoOfBikesReleasedr;
     }
 
-    public Manufacturer setNoOfBooksPublished(int manufacturingYeanoOfBikesReleasedr) {
+    public Manufacturer setNoOfBikesReleased(int manufacturingYeanoOfBikesReleasedr) {
         this.manufacturingYeanoOfBikesReleasedr = manufacturingYeanoOfBikesReleasedr;
         return this;
     }

@@ -14,7 +14,7 @@ public class Invoker {
     public void placeOrders() {
         BuyBikeCommand buyBikeCommand = BuyBikeCommand.getInstance();
         for (Bike order : orderList) {
-            System.out.println(BuyBikeCommand.setBook(order)
+            System.out.println(BuyBikeCommand.setBike(order)
                     .execute());
         }
         orderList.clear();

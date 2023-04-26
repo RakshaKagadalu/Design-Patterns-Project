@@ -22,11 +22,11 @@ public class BuyBikeCommand implements CommandAPI {
         return bike.buyBike();
     }
 
-    public Bike getBook() {
+    public Bike getBike() {
         return bike;
     }
 
-    public BuyBikeCommand setBook(Bike bike) {
+    public BuyBikeCommand setBike(Bike bike) {
         this.bike = bike;
         return this;
     }

@@ -15,67 +15,67 @@ public class BikeBuilder implements BuilderAPI {
     private String bikeManufacturer;
 
     public String getBikeManufacturer() {
-        return bookAuthor;
+        return bikeManufacturer;
     }
 
-    public void setBikeAuthor(String bookAuthor) {
-        this.bookAuthor = bookAuthor;
+    public void setBikeAuthor(String bikeManufacturer) {
+        this.bikeManufacturer = bikeManufacturer;
     }
 
     public int getBikeId() {
-        return bookId;
+        return bikeId;
     }
 
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
+    public void setBikeId(int bikeId) {
+        this.bikeId = bikeId;
     }
 
     public String getBikeName() {
-        return bookName;
+        return bikeName;
     }
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
+    public void setBikeName(String bikeName) {
+        this.bikeName = bikeName;
     }
 
     public double getBikePrice() {
-        return bookPrice;
+        return bikePrice;
     }
 
-    public void setBookPrice(double bookPrice) {
-        this.bookPrice = bookPrice;
+    public void setBikePrice(double bikePrice) {
+        this.bikePrice = bikePrice;
     }
 
     public BikeCategory getBikeCategory() {
-        return bookCategory;
+        return bikeCategory;
     }
 
-    public void setBookCategory(BikeCategory bookCategory) {
-        this.bookCategory = bookCategory;
+    public void setBikeCategory(BikeCategory bikeCategory) {
+        this.bikeCategory = bikeCategory;
     }
 
-    public BikeBuilder(int bookId, String bookName, double bookPrice, BikeCategory bookCategory, String bookAuthor) {
+    public BikeBuilder(int bikeId, String bikeName, double bikePrice, BikeCategory bikeCategory,
+            String bikeManufacturer) {
         super();
-        this.bookId = bookId;
-        this.bookName = bookName;
-        this.bookPrice = bookPrice;
-        this.bookCategory = bookCategory;
-        this.bookAuthor = bookAuthor;
+        this.bikeId = bikeId;
+        this.bikeName = bikeName;
+        this.bikePrice = bikePrice;
+        this.bikeCategory = bikeCategory;
+        this.bikeManufacturer = bikeManufacturer;
     }
 
     public BikeBuilder(String s) {
         String[] tokens = s.split(",");
-        this.bookId = ConvertUtility.StringToInt(tokens[0]);
-        this.bookName = tokens[1];
-        this.bookPrice = ConvertUtility.StringToDouble(tokens[2]);
-        this.bookCategory = BikeCategory.getBikeCategory(tokens[3]);
-        this.bookAuthor = tokens[4];
+        this.bikeId = ConvertUtility.StringToInt(tokens[0]);
+        this.bikeName = tokens[1];
+        this.bikePrice = ConvertUtility.StringToDouble(tokens[2]);
+        this.bikeCategory = BikeCategory.getBikeCategory(tokens[3]);
+        this.bikeManufacturer = tokens[4];
     }
 
     @Override
     public Bike build() {
         // TODO Auto-generated method stub
-        return BookFactory.getInstance().getObject(this);
+        return BikeFactory.getInstance().getObject(this);
     }
-
 }
