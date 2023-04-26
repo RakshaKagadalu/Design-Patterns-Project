@@ -5,7 +5,7 @@ package edu.neu.csye7374.Adapter;
 public class Manufacturer implements Cloneable {
     private String manufacturerName;
     private int manufacturingYear;
-    private int manufacturingYeanoOfBikesReleasedr;
+    private int noOfBikesReleased;
     private static Manufacturer instance;
 
     public Manufacturer() {
@@ -19,11 +19,11 @@ public class Manufacturer implements Cloneable {
         return instance;
     }
 
-    private Manufacturer(String manufacturerName, int manufacturingYear, int manufacturingYeanoOfBikesReleasedr) {
+    private Manufacturer(String manufacturerName, int manufacturingYear, int noOfBikesReleased) {
         super();
         this.manufacturerName = manufacturerName;
         this.manufacturingYear = manufacturingYear;
-        this.manufacturingYeanoOfBikesReleasedr = manufacturingYeanoOfBikesReleasedr;
+        this.noOfBikesReleased = noOfBikesReleased;
     }
 
     public String getManufacturerName() {
@@ -45,18 +45,18 @@ public class Manufacturer implements Cloneable {
     }
 
     public int getNoOfBikesReleased() {
-        return manufacturingYeanoOfBikesReleasedr;
+        return noOfBikesReleased;
     }
 
-    public Manufacturer setNoOfBikesReleased(int manufacturingYeanoOfBikesReleasedr) {
-        this.manufacturingYeanoOfBikesReleasedr = manufacturingYeanoOfBikesReleasedr;
+    public Manufacturer setNoOfBikesReleased(int noOfBikesReleased) {
+        this.noOfBikesReleased = noOfBikesReleased;
         return this;
     }
 
     @Override
     public String toString() {
         return "Author [manufacturerName=" + manufacturerName + ", manufacturingYear=" + manufacturingYear
-                + ", manufacturingYeanoOfBikesReleasedr=" + manufacturingYeanoOfBikesReleasedr + "]";
+                + ", NumberOfBikesReleasedr=" + noOfBikesReleased + "]";
     }
 
     @Override
