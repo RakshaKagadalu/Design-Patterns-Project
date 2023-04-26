@@ -1,5 +1,7 @@
 package edu.neu.csye7374.Strategy;
 
+import edu.neu.csye7374.Bike;
+
 public class ExchangeOfferStrategy implements OfferStrategyAPI {
 
 	@Override

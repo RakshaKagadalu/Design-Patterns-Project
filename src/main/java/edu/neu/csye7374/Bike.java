@@ -1,7 +1,7 @@
 package edu.neu.csye7374;
 
 import edu.neu.csye7374.Builder.BikeBuilder;
-import edu.neu.csye7374.Strategy_Pattern.DiscountStrategy;
+import edu.neu.csye7374.Strategy.OfferStrategy;
 
 public class Bike implements BikeAPI {
 
@@ -91,12 +91,18 @@ public class Bike implements BikeAPI {
     public double runStrategy() {
         double value = 0;
         switch (BikeDock.usingStrategy) {
-            case EmployeeDiscount:
-                value = BikeDock.getAlgorithmMap().get(DiscountStrategy.EmployeeDiscount).discountPrice(this);
+            case StudentOfferStrategy:
+                value = BikeDock.getAlgorithmMap().get(OfferStrategy.StudentOfferStrategy).discountAmt(this);
                 break;
-            case StudentDiscount:
-                value = BikeDock.getAlgorithmMap().get(DiscountStrategy.StudentDiscount).discountPrice(this);
+            case ExchangeOfferStrategy:
+                value = BikeDock.getAlgorithmMap().get(OfferStrategy.ExchangeOfferStrategy).discountAmt(this);
                 break;
+            case CoupleOfferStrategy:
+                value = BikeDock.getAlgorithmMap().get(OfferStrategy.CoupleOfferStrategy).discountAmt(this);
+            break;
+            case NewMemberOfferStrategy:
+                value = BikeDock.getAlgorithmMap().get(OfferStrategy.NewMemberOfferStrategy).discountAmt(this);
+            break;
             default:
                 value = bikePrice;
                 break;

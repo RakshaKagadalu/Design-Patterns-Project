@@ -26,11 +26,11 @@ public class Manufacturer implements Cloneable {
         this.manufacturingYeanoOfBikesReleasedr = manufacturingYeanoOfBikesReleasedr;
     }
 
-    public String getAuthorName() {
+    public String getManufacturerName() {
         return manufacturerName;
     }
 
-    public Manufacturer setAuthorName(String manufacturerName) {
+    public Manufacturer setManufacturerName(String manufacturerName) {
         this.manufacturerName = manufacturerName;
         return this;
     }
