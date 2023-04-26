@@ -1,6 +1,8 @@
 package edu.neu.csye7374.Facade;
 
 import edu.neu.csye7374.BikeAPI;
+import edu.neu.csye7374.Decorator.BikeDecorator;
+import edu.neu.csye7374.Decorator.GiftDecorator;
 import edu.neu.csye7374.Observer.BikeOrder;
 
 public class BikeOrderFacade {

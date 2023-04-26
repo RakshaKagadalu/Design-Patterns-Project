@@ -67,7 +67,7 @@ public class Bike implements BikeAPI {
     }
 
     @Override
-    public int noOfBikesInUse() {
+    public int noOfBikesRented() {
         // TODO Auto-generated method stub
         return (int) Math.random() * 5;
     }

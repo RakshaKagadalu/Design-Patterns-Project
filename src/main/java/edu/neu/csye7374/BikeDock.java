@@ -5,38 +5,39 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import edu.neu.csye7374.Adapter_Pattern.Manufacturer;
-import edu.neu.csye7374.Adapter_Pattern.ManufacturerObjectAdapter;
+import edu.neu.csye7374.Adapter.Manufacturer;
+import edu.neu.csye7374.Adapter.ManufacturerObjectAdapter;
 import edu.neu.csye7374.Builder.BikeBuilder;
 import edu.neu.csye7374.Builder.EmployeeBuilder;
-import edu.neu.csye7374.Command_Pattern.Invoker;
-import edu.neu.csye7374.Facade.DeliveryType;
-import edu.neu.csye7374.Facade.OrderFacade;
-import edu.neu.csye7374.Factory_Pattern.BikeFactory;
-import edu.neu.csye7374.Factory_Pattern.EmployeeFactory;
-import edu.neu.csye7374.ObserverPattern.Order;
-import edu.neu.csye7374.State_Pattern.*;
-import edu.neu.csye7374.Strategy_Pattern.*;
+import edu.neu.csye7374.Command.Invoker;
+import edu.neu.csye7374.Facade.BikeDeliveryType;
+import edu.neu.csye7374.Facade.BikeOrderFacade;
+import edu.neu.csye7374.Factory.BikeFactory;
+import edu.neu.csye7374.Factory.BikeFactoryAPI;
+import edu.neu.csye7374.Factory.EmployeeFactory;
+import edu.neu.csye7374.Observer.BikeOrder;
+import edu.neu.csye7374.state_DP.*;
+import edu.neu.csye7374.Strategy.*;
 import edu.neu.csye7374.fileUtil.FileUtil;
 
-public class BikeDock implements BikeDockAPI {
+public class BikeDock implements BikeDockStateAPI {
 
     private String name;
     private List<Bike> itemList = new ArrayList<>();
     private List<Person> personList = new ArrayList<>();
-    public static DiscountStrategy usingStrategy = DiscountStrategy.NONE;
+    public static OfferStrategy usingStrategy = OfferStrategy.NONE;
     private static final String FILE_NAME = "edu/neu/csye7374/input/team2input.txt";
 
-    private BikeStoreStateAPI openState = new OpenState(this);
-    private BikeStoreStateAPI stockState = new StockState(this);
-    private BikeStoreStateAPI closeState = new CloseState(this);
-    private BikeStoreStateAPI state;
+    private BikeDockStateAPI openState = new DockOpen(this);
+    private BikeDockStateAPI closeState = new DockClose(this);
+    private BikeDockStateAPI state;
 
-    private static Map<DiscountStrategy, DiscountStrategyAPI> algorithmMap = new HashMap<>();
+    private static Map<OfferStrategy, OfferStrategyAPI> algorithmMap = new HashMap<>();
     {
-        // algorithmMap.put(DiscountStrategy.NONE, null);
-        algorithmMap.put(DiscountStrategy.StudentDiscount, new StudentDiscount());
-        algorithmMap.put(DiscountStrategy.EmployeeDiscount, new EmployeeDiscount());
+        algorithmMap.put(OfferStrategy.StudentOfferStrategy, new StudentOfferStrategy());
+        algorithmMap.put(OfferStrategy.ExchangeOfferStrategy, new ExchangeOfferStrategy());
+        algorithmMap.put(OfferStrategy.CoupleOfferStrategy, new CoupleOfferStrategy());
+        algorithmMap.put(OfferStrategy.NewMemberOfferStrategy, new NewMemberOfferStrategy());
     }
 
     public BikeDock(String name) {
@@ -69,71 +70,57 @@ public class BikeDock implements BikeDockAPI {
         this.personList = personList;
     }
 
-    public static DiscountStrategy getUsingStrategy() {
+    public static OfferStrategy getUsingStrategy() {
         return usingStrategy;
     }
 
-    public static void setUsingStrategy(DiscountStrategy usingStrategy) {
-        BikeStore.usingStrategy = usingStrategy;
+    public static void setUsingStrategy(OfferStrategy usingStrategy) {
+        BikeDock.usingStrategy = usingStrategy;
     }
 
-    public static Map<DiscountStrategy, DiscountStrategyAPI> getAlgorithmMap() {
+    public static Map<OfferStrategy, OfferStrategyAPI> getAlgorithmMap() {
         return algorithmMap;
     }
 
-    public static void setAlgorithmMap(Map<DiscountStrategy, DiscountStrategyAPI> algorithmMap) {
-        BikeStore.algorithmMap = algorithmMap;
+    public static void setAlgorithmMap(Map<OfferStrategy, OfferStrategyAPI> algorithmMap) {
+        BikeDock.algorithmMap = algorithmMap;
     }
 
-    public BikeStoreStateAPI getState() {
+    public BikeDockStateAPI getState() {
         return state;
     }
 
-    public void setState(BikeStoreStateAPI state) {
+    public void setState(BikeDockStateAPI state) {
         this.state = state;
     }
 
-    public BikeStoreStateAPI getOpenState() {
+    public BikeDockStateAPI getOpenState() {
         return openState;
     }
 
-    public void setOpenState(BikeStoreStateAPI openState) {
+    public void setOpenState(BikeDockStateAPI openState) {
         this.openState = openState;
     }
 
-    public BikeStoreStateAPI getStockState() {
-        return stockState;
-    }
-
-    public void setStockState(BikeStoreStateAPI stockState) {
-        this.stockState = stockState;
-    }
-
-    public BikeStoreStateAPI getCloseState() {
+    public BikeDockStateAPI getCloseState() {
         return closeState;
     }
 
-    public void setCloseState(BikeStoreStateAPI closeState) {
+    public void setCloseState(BikeDockStateAPI closeState) {
         this.closeState = closeState;
     }
 
     @Override
-    public void state_Open() {
+    public void dock_Open() {
         // TODO Auto-generated method stub
-        this.state.state_Open();
+        this.state.dock_Open();
 
     }
 
     @Override
-    public void state_Close() {
+    public void dock_Close() {
         // TODO Auto-generated method stub
-        this.state.state_Close();
-    }
-
-    @Override
-    public void state_Stock() {
-        // TODO Auto-generated method stub
-        this.state.state_Stock();
+        this.state.dock_Close();
     }
 
     public static void demo() {
@@ -141,7 +128,11 @@ public class BikeDock implements BikeDockAPI {
         FileUtil.getFileData(FILE_NAME);
 
         List<Bike> bikeList = new ArrayList<>();
-
+//RoadBikes,
+    MountainBikes,
+    HybridBikes,
+    TouringBikes,
+    CrossBikes;
         // Builder Pattern and getting object of Builder using Factory and Singleton
         // Pattern
         System.out.println("***************************************************************************************");
@@ -149,7 +140,7 @@ public class BikeDock implements BikeDockAPI {
                 "Demonstrating of Builder pattern. Delegating the responsibilty of creating Bikes objects to Bike Builder which implements build method and builds bike object for us");
         System.out.println("Using Factory and singleton pattern to get only single instance of Bike Builder object");
         BikeBuilder bikeBuilder = new BikeBuilder(1, "Harry Potter", 10, BikeCategory.Fiction, "JK Rowling");
-        BikeAPI bike = BikeFactoryAPI.getInstance().getObject(bikeBuilder);
+        BikeAPI bike = BikeFactory.getInstance().getObject(bikeBuilder);
         bikeList.add((Bike) bike);
         System.out.println(bike);
         FileUtil.appendEntryToFile(FILE_NAME, bikeBuilder);
@@ -180,41 +171,41 @@ public class BikeDock implements BikeDockAPI {
         System.out.println(
                 "Demonstration of Observer pattern to notify the shipping cost and discount observer of changes as the number of our orders added into order list");
 
-        OrderFacade orderFacade = new OrderFacade(bike);
-        Order order = orderFacade.order();
+        BikeOrderFacade orderFacade = new BikeOrderFacade(bike);
+        BikeOrder order = orderFacade.bikeOrder();
 
         System.out.println(order);
-        order.setDeliveryType(DeliveryType.Delivery);
+        order.setBikeDeliveryType(BikeDeliveryType.Delivery);
 
         bikeBuilder = new BikeBuilder(2, "Yogi Autobiography", 100, BikeCategory.Documentary, "Swami Dayananad");
-        bike = BikeFactoryAPI.getInstance().getObject(bikeBuilder);
+        bike = BikeFactory.getInstance().getObject(bikeBuilder);
         order.addBike(bike);
         System.out.println(order);
         bikeList.add((Bike) bike);
         FileUtil.appendEntryToFile(FILE_NAME, bikeBuilder);
 
         bikeBuilder = new BikeBuilder(3, "Alice in Wonderland", 150, BikeCategory.Fiction, "Scott Ross");
-        bike = BikeFactoryAPI.getInstance().getObject(bikeBuilder);
+        bike = BikeFactory.getInstance().getObject(bikeBuilder);
         order.addBike(bike);
         System.out.println(order);
         bikeList.add((Bike) bike);
         FileUtil.appendEntryToFile(FILE_NAME, bikeBuilder);
 
         bikeBuilder = new BikeBuilder(4, "Last Bout", 101, BikeCategory.Documentary, "Mc Gregor");
-        bike = BikeFactoryAPI.getInstance().getObject(bikeBuilder);
+        bike = BikeFactory.getInstance().getObject(bikeBuilder);
         order.addBike(bike);
         System.out.println(order);
         bikeList.add((Bike) bike);
         FileUtil.appendEntryToFile(FILE_NAME, bikeBuilder);
 
         bikeBuilder = new BikeBuilder(5, "Teresstial Lives", 200, BikeCategory.Scifi, "Phil Hughes");
-        bike = BikeFactoryAPI.getInstance().getObject(bikeBuilder);
+        bike = BikeFactory.getInstance().getObject(bikeBuilder);
         order.addBike(bike);
         System.out.println(order);
         bikeList.add((Bike) bike);
 
         bikeBuilder = new BikeBuilder(6, "Playing my way", 310, BikeCategory.Documentary, "Sachin Tendulkar");
-        bike = BikeFactoryAPI.getInstance().getObject(bikeBuilder);
+        bike = BikeFactory.getInstance().getObject(bikeBuilder);
         order.addBike(bike);
         System.out.println(order);
         bikeList.add((Bike) bike);
@@ -224,11 +215,11 @@ public class BikeDock implements BikeDockAPI {
         System.out.println("Demonstration of Command pattern to send the request for all bikes orders and print them");
 
         Invoker invoker = new Invoker();
-        invoker.placeOrders(bikeList);
-        invoker.rentOrders(bikeList);
+        invoker.placeBikeOrders(bikeList);
+        invoker.rentBikeOrders(bikeList);
         System.out.println("***************************************************************************************");
 
-        BikeStore bikeStr = new BikeStore("Kindle");
+        BikeDock bikeStr = new BikeDock("Kindle");
         EmployeeBuilder emplBuilder = new EmployeeBuilder(7, 27, "Daniel", "Peters", 18.5);
         Employee empl = EmployeeFactory.getInstance().getObject(emplBuilder);
         System.out
@@ -240,19 +231,18 @@ public class BikeDock implements BikeDockAPI {
         System.out.println(
                 "Demonstration of state pattern completed life cycle of order transitioning from ordered to delived state");
 
-        order.state_Awaiting_OrderConfirmation();
-        order.state_OrderConfirmed();
-        order.state_OrderDelivered();
-        order.state_OrderDispatched();
-        order.state_OrderDelivered();
-        order.state_OrderDelivered();
+        order.bikeConfirmed_state();
+        order.bikeDelivered_state();
+        order.bikeDeliveryStatus_state();
+        order.bikeDelivered_state();
+        order.bikeDelivered_state();
         System.out.println("***************************************************************************************");
         // Strategy Pattern
         System.out.println(
                 "Demonstration of strategy pattern to show differene discounts applied to original price and final price after student and employee discounts ");
         System.out.println("Bike before discount: \n" + bike);
         double price = 0;
-        for (DiscountStrategy strategy : BikeStore.getAlgorithmMap().keySet()) {
+        for (OfferStrategy strategy : BikeDock.getAlgorithmMap().keySet()) {
             bikeStr.setUsingStrategy(strategy);
             price = ((Bike) bike).runStrategy();
             System.out.println("Bike price after discount during sale: " + strategy + price);

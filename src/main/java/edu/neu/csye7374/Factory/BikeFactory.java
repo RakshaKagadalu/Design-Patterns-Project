@@ -1,6 +1,8 @@
 package edu.neu.csye7374.Factory;
 
 import edu.neu.csye7374.Bike;
+import edu.neu.csye7374.Builder.BikeBuilder;
+import edu.neu.csye7374.Builder.BuilderAPI;
 
 public class BikeFactory implements BikeFactoryAPI<Bike> {
 

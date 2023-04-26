@@ -1,19 +1,20 @@
-package edu.neu.csye7374.Stratergy;
+package edu.neu.csye7374.Strategy;
 
-public class CoupleOfferStrategy implements OfferStrategyAPI{
+public class ExchangeOfferStrategy implements OfferStrategyAPI {
+
 	@Override
 	public double discountAmt(Bike bike) {
 		// TODO Auto-generated method stub
-		double rate = 0.20;
+		double rate = 0.40;
 		double offer = bike.getBikePrice() - (bike.getBikePrice() * rate);
 		offer = (double) Math.round(offer * 100) / 100;
-		return offer;	
+		return offer;
 
 	}
 
 	@Override
 	public String discountDesc(Bike bike) {
 		// TODO Auto-generated method stub
-		return "20% discount for couple bike offer added!";
+		return "40% discount for exchange bike offer added!";
 	}
 }

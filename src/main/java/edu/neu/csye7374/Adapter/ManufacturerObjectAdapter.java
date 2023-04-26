@@ -1,6 +1,6 @@
 package edu.neu.csye7374.Adapter;
 
-import neu.csye7374.src.BikeAPI;
+import edu.neu.csye7374.BikeAPI;
 
 public class ManufacturerObjectAdapter implements BikeAPI {
 
@@ -19,12 +19,6 @@ public class ManufacturerObjectAdapter implements BikeAPI {
     }
 
     @Override
-    public int noOfBikesReleased() {
-        // TODO Auto-generated method stub
-        return manufacturer.getNoOfBikesReleased();
-    }
-
-    @Override
     public Object getBikeManufacturer() {
         // TODO Auto-generated method stub
         return Manufacturer.class.cast(manufacturer);
@@ -39,6 +33,12 @@ public class ManufacturerObjectAdapter implements BikeAPI {
     public double getBikePrice() {
         // TODO Auto-generated method stub
         return bike.getBikePrice();
+    }
+
+    @Override
+    public int noOfBikesRented() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'noOfBikesRented'");
     }
 
 }

@@ -7,27 +7,26 @@ import edu.neu.csye7374.Bike;
 public class Invoker {
     private List<Bike> orderList = new ArrayList<>();
 
-    public void takeOrder(Bike order) {
+    public void takeBikeOrder(Bike order) {
         orderList.add(order);
     }
 
-    public void placeOrders() {
+    public void placeBikeOrders() {
         BuyBikeCommand buyBikeCommand = BuyBikeCommand.getInstance();
         for (Bike order : orderList) {
-            System.out.println(BuyBikeCommand.setBike(order)
-                    .execute());
+            System.out.println(buyBikeCommand.setBike(order).execute());
         }
         orderList.clear();
     }
 
-    public void placeOrders(List<Bike> bikeList) {
+    public void placeBikeOrders(List<Bike> bikeList) {
         for (Bike b : bikeList) {
             orderList.add(b);
         }
-        placeOrders();
+        placeBikeOrders();
     }
 
-    public void rentOrders() {
+    public void rentBikeOrders() {
         RentBikeCommand rentBikeCommand = RentBikeCommand.getInstance();
         for (Bike order : orderList) {
             System.out.println(rentBikeCommand.setBike(order)
@@ -36,18 +35,18 @@ public class Invoker {
         orderList.clear();
     }
 
-    public void rentOrders(List<Bike> bikeList) {
+    public void rentBikeOrders(List<Bike> bikeList) {
         for (Bike b : bikeList) {
             orderList.add(b);
         }
-        rentOrders();
+        rentBikeOrders();
     }
 
-    public List<Bike> getOrderList() {
+    public List<Bike> getBikeOrderList() {
         return orderList;
     }
 
-    public void setOrderList(List<Bike> orderList) {
+    public void setBikeOrderList(List<Bike> orderList) {
         this.orderList = orderList;
     }
 

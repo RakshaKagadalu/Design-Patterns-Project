@@ -1,6 +1,6 @@
 package edu.neu.csye7374.Adapter;
 
-//import neu.csye7374.src.Factory_Pattern.EmployeeFactory;
+//import edu.neu.csye7374.Factory_Pattern.EmployeeFactory;
 
 public class Manufacturer implements Cloneable {
     private String manufacturerName;
