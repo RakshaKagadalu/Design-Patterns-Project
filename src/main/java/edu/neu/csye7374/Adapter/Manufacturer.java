@@ -35,11 +35,11 @@ public class Manufacturer implements Cloneable {
         return this;
     }
 
-    public int getAge() {
+    public int getManufacturingYear() {
         return manufacturingYear;
     }
 
-    public Manufacturer setAge(int manufacturingYear) {
+    public Manufacturer setManufacturingYear(int manufacturingYear) {
         this.manufacturingYear = manufacturingYear;
         return this;
     }

@@ -34,3 +34,17 @@
 2,Yogi Autobiography,100.0,HybridBikes,Swami Dayananad
 3,Alice in Wonderland,150.0,RoadBikes,Scott Ross
 4,Last Bout,101.0,CrossBikes,Mc Gregor
+1,Harry Potter,10.0,RoadBikes,JK Rowling
+1,Harry Potter,10.0,RoadBikes,JK Rowling
+1,Harry Potter,10.0,RoadBikes,JK Rowling
+2,Yogi Autobiography,100.0,HybridBikes,Swami Dayananad
+3,Alice in Wonderland,150.0,RoadBikes,Scott Ross
+4,Last Bout,101.0,CrossBikes,Mc Gregor
+1,M100,10.0,RoadBikes,Schnell
+2,Yogi Autobiography,100.0,HybridBikes,Swami Dayananad
+3,Alice in Wonderland,150.0,RoadBikes,Scott Ross
+4,Last Bout,101.0,CrossBikes,Mc Gregor
+1,M100,250.0,RoadBikes,Schnell
+2,HighLand 26",149.99,HybridBikes,Huffy
+3,Barron,300.0,RoadBikes,Retrospec
+4,Kinney,210.0,CrossBikes,Retrospec

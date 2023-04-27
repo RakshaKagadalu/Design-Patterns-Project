@@ -132,9 +132,9 @@ public class BikeDock implements BikeDockStateAPI {
         // Pattern
         System.out.println("***************************************************************************************");
         System.out.println(
-                "Demonstrating of Builder pattern. Delegating the responsibilty of creating Bikes objects to Bike Builder which implements build method and builds bike object for us");
+                "Demonstration of Builder pattern. Delegating the responsibilty of creating Bikes objects to Bike Builder which implements build method and builds bike object for us");
         System.out.println("Using Factory and singleton pattern to get only single instance of Bike Builder object");
-        BikeBuilder bikeBuilder = new BikeBuilder(1, "Harry Potter", 10, BikeCategory.RoadBikes, "JK Rowling");
+        BikeBuilder bikeBuilder = new BikeBuilder(1, "M100", 250, BikeCategory.RoadBikes, "Schnell");
         BikeAPI bike = BikeFactory.getInstance().getObject(bikeBuilder);
         bikeList.add((Bike) bike);
         System.out.println(bike);
@@ -142,21 +142,21 @@ public class BikeDock implements BikeDockStateAPI {
 
         // Prototype Pattern to clone the object of author
         System.out.println("***************************************************************************************");
-        System.out.println("Demonstrating of prototype pattern to clone the object of Manufacturer");
+        System.out.println("Demonstration of prototype pattern to clone the object of Manufacturer");
         Manufacturer author = Manufacturer.getInstance().clone();
-        author.setManufacturerName("JK Rowling")
-                .setAge(52)
-                .setNoOfBikesReleased(10);
+        author.setManufacturerName("Schnell")
+                .setManufacturingYear(2021)
+                .setNoOfBikesReleased(250);
 
         // Adapter Pattern to adapt adapt author legacy code with Bike Interface
-        ManufacturerObjectAdapter authorAdapter = new ManufacturerObjectAdapter(bike, author);
+        ManufacturerObjectAdapter manufacturerAdapter = new ManufacturerObjectAdapter(bike, author);
 
         System.out.println(bike);
         System.out.println("***************************************************************************************");
         System.out.println(
-                "Demonstrating of Adapter pattern to adapt author legacy class with Bike Interface and priting their object");
+                "Demonstration of Adapter pattern to adapt manufacturer legacy class with Bike Interface and priting their object");
 
-        System.out.println(authorAdapter);
+        System.out.println(manufacturerAdapter);
         System.out.println("***************************************************************************************");
 
         // Demonstration of facade pattern and decorator pattern to decorate the bike
@@ -172,34 +172,34 @@ public class BikeDock implements BikeDockStateAPI {
         System.out.println(order);
         order.setBikeDeliveryType(BikeDeliveryType.Delivery);
 
-        bikeBuilder = new BikeBuilder(2, "Yogi Autobiography", 100, BikeCategory.HybridBikes, "Swami Dayananad");
+        bikeBuilder = new BikeBuilder(2, "HighLand 26\"", 149.99, BikeCategory.HybridBikes, "Huffy");
         bike = BikeFactory.getInstance().getObject(bikeBuilder);
         order.addBike(bike);
         System.out.println(order);
         bikeList.add((Bike) bike);
         FileUtil.appendEntryToFile(FILE_NAME, bikeBuilder);
 
-        bikeBuilder = new BikeBuilder(3, "Alice in Wonderland", 150, BikeCategory.RoadBikes, "Scott Ross");
+        bikeBuilder = new BikeBuilder(3, "BeauMont", 300, BikeCategory.RoadBikes, "Retrospec");
         bike = BikeFactory.getInstance().getObject(bikeBuilder);
         order.addBike(bike);
         System.out.println(order);
         bikeList.add((Bike) bike);
         FileUtil.appendEntryToFile(FILE_NAME, bikeBuilder);
 
-        bikeBuilder = new BikeBuilder(4, "Last Bout", 101, BikeCategory.CrossBikes, "Mc Gregor");
+        bikeBuilder = new BikeBuilder(4, "Triban", 210, BikeCategory.CrossBikes, "Retrospec");
         bike = BikeFactory.getInstance().getObject(bikeBuilder);
         order.addBike(bike);
         System.out.println(order);
         bikeList.add((Bike) bike);
         FileUtil.appendEntryToFile(FILE_NAME, bikeBuilder);
 
-        bikeBuilder = new BikeBuilder(5, "Teresstial Lives", 200, BikeCategory.HybridBikes, "Phil Hughes");
+        bikeBuilder = new BikeBuilder(5, "Rockrider", 150, BikeCategory.HybridBikes, "Btwin");
         bike = BikeFactory.getInstance().getObject(bikeBuilder);
         order.addBike(bike);
         System.out.println(order);
         bikeList.add((Bike) bike);
 
-        bikeBuilder = new BikeBuilder(6, "Playing my way", 310, BikeCategory.TouringBikes, "Sachin Tendulkar");
+        bikeBuilder = new BikeBuilder(6, "RMX", 350, BikeCategory.TouringBikes, "Royce Union");
         bike = BikeFactory.getInstance().getObject(bikeBuilder);
         order.addBike(bike);
         System.out.println(order);
@@ -214,8 +214,8 @@ public class BikeDock implements BikeDockStateAPI {
         invoker.rentBikeOrders(bikeList);
         System.out.println("***************************************************************************************");
 
-        BikeDock bikeStr = new BikeDock("Kindle");
-        EmployeeBuilder emplBuilder = new EmployeeBuilder(7, 27, "Daniel", "Peters", 18.5);
+        BikeDock bikeStr = new BikeDock("Northeastern");
+        EmployeeBuilder emplBuilder = new EmployeeBuilder(7, 27, "John", "Doe", 18.5);
         Employee empl = EmployeeFactory.getInstance().getObject(emplBuilder);
         System.out
                 .println("Using Factory and singleton pattern to get only single instance of Employee Builder object");
@@ -234,7 +234,7 @@ public class BikeDock implements BikeDockStateAPI {
         System.out.println("***************************************************************************************");
         // Strategy Pattern
         System.out.println(
-                "Demonstration of strategy pattern to show differene discounts applied to original price and final price after student and employee discounts ");
+                "Demonstration of strategy pattern to show different discounts applied to original price and final price after student and employee discounts ");
         System.out.println("Bike before discount: \n" + bike);
         double price = 0;
         for (OfferStrategy strategy : BikeDock.getAlgorithmMap().keySet()) {
