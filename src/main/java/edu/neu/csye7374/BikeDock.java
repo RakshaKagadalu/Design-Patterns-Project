@@ -30,18 +30,18 @@ public class BikeDock implements BikeDockStateAPI {
     private List<Bike> itemList = new ArrayList<>();
     private List<Person> personList = new ArrayList<>();
     public static OfferStrategy usingStrategy = OfferStrategy.NONE;
-    private static final String FILE_NAME = "src/main/java/edu/neu/csye7374/data/NEUBikesData.txt";
+    private static final String FILE_NAME = "src/main/java/edu/neu/csye7374/datastore/NEUBikesData.txt";
 
     private BikeDockStateAPI openState = new DockOpen(this);
     private BikeDockStateAPI closeState = new DockClose(this);
     private BikeDockStateAPI state;
 
-    private static Map<OfferStrategy, OfferStrategyAPI> algorithmMap = new HashMap<>();
+    private static Map<OfferStrategy, OfferStrategyAPI> strategyMap = new HashMap<>();
     {
-        algorithmMap.put(OfferStrategy.StudentOfferStrategy, new StudentOfferStrategy());
-        algorithmMap.put(OfferStrategy.ExchangeOfferStrategy, new ExchangeOfferStrategy());
-        algorithmMap.put(OfferStrategy.CoupleOfferStrategy, new CoupleOfferStrategy());
-        algorithmMap.put(OfferStrategy.NewMemberOfferStrategy, new NewMemberOfferStrategy());
+        strategyMap.put(OfferStrategy.StudentOfferStrategy, new StudentOfferStrategy());
+        strategyMap.put(OfferStrategy.ExchangeOfferStrategy, new ExchangeOfferStrategy());
+        strategyMap.put(OfferStrategy.CoupleOfferStrategy, new CoupleOfferStrategy());
+        strategyMap.put(OfferStrategy.NewMemberOfferStrategy, new NewMemberOfferStrategy());
     }
 
     public BikeDock(String name) {
@@ -83,11 +83,11 @@ public class BikeDock implements BikeDockStateAPI {
     }
 
     public static Map<OfferStrategy, OfferStrategyAPI> getAlgorithmMap() {
-        return algorithmMap;
+        return strategyMap;
     }
 
-    public static void setAlgorithmMap(Map<OfferStrategy, OfferStrategyAPI> algorithmMap) {
-        BikeDock.algorithmMap = algorithmMap;
+    public static void setAlgorithmMap(Map<OfferStrategy, OfferStrategyAPI> strategyMap) {
+        BikeDock.strategyMap = strategyMap;
     }
 
     public BikeDockStateAPI getState() {
