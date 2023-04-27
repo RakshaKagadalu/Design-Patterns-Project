@@ -3,7 +3,7 @@ package edu.neu.csye7374.Builder;
 import edu.neu.csye7374.Bike;
 import edu.neu.csye7374.Bike;
 import edu.neu.csye7374.BikeCategory;
-import edu.neu.csye7374.fileUtil.ConvertUtil;
+
 import edu.neu.csye7374.Factory.*;
 
 public class BikeBuilder implements BuilderAPI {
@@ -66,9 +66,9 @@ public class BikeBuilder implements BuilderAPI {
 
     public BikeBuilder(String s) {
         String[] tokens = s.split(",");
-        this.bikeId = ConvertUtil.StringToInt(tokens[0]);
+        this.bikeId = Integer.parseInt(tokens[0]);
         this.bikeName = tokens[1];
-        this.bikePrice = ConvertUtil.StringToDouble(tokens[2]);
+        this.bikePrice = Double.parseDouble(tokens[2]);
         this.bikeCategory = BikeCategory.getBikeCategory(tokens[3]);
         this.bikeManufacturer = tokens[4];
     }

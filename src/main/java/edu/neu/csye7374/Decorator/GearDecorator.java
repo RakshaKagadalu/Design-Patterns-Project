@@ -1,10 +1,11 @@
 package edu.neu.csye7374.Decorator;
 
-import edu.neu.csye7374.*;
+import edu.neu.csye7374.Bike;
+import edu.neu.csye7374.BikeAPI;
 
-public class HelmetDecorator extends BikeDecorator {
+public class GearDecorator extends BikeDecorator {
 
-    public HelmetDecorator(BikeAPI decoratedBike) {
+    public GearDecorator(BikeAPI decoratedBike) {
         super(decoratedBike);
         // TODO Auto-generated constructor stub
     }
@@ -12,7 +13,7 @@ public class HelmetDecorator extends BikeDecorator {
     @Override
     public String bikeDescription() {
         // TODO Auto-generated method stub
-        return decoratedBike.bikeDescription() + ", Added Helmet to the order";
+        return decoratedBike.bikeDescription() + ", Added Gears to the bike";
     }
 
     @Override
@@ -23,7 +24,7 @@ public class HelmetDecorator extends BikeDecorator {
 
     public double getBikePrice() {
         Bike b = Bike.class.cast(decoratedBike);
-        return b.getBikePrice() + 25;
+        return b.getBikePrice() + 100;
     }
 
 }

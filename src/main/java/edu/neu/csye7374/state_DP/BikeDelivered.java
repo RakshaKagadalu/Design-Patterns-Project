@@ -12,16 +12,16 @@ public class BikeDelivered implements BikeStatusStateAPI {
 
     @Override
     public void bikeConfirmed_state() {
-        System.out.println("Error ... BikeOrder already DELIVERED");
+        System.out.println("Sorry, BikeOrder already DELIVERED");
     }
 
     @Override
     public void bikeDeliveryStatus_state() {
-        System.out.println("Error ... BikeOrder already DELIVERED");
+        System.out.println("Sorry,  BikeOrder already DELIVERED");
     }
 
     @Override
     public void bikeDelivered_state() {
-        System.out.println("Error ... BikeOrder already DELIVERED");
+        System.out.println("Sorry, BikeOrder already DELIVERED");
     }
 }

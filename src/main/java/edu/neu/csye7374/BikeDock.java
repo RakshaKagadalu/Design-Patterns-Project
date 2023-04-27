@@ -10,6 +10,10 @@ import edu.neu.csye7374.Adapter.ManufacturerObjectAdapter;
 import edu.neu.csye7374.Builder.BikeBuilder;
 import edu.neu.csye7374.Builder.EmployeeBuilder;
 import edu.neu.csye7374.Command.Invoker;
+import edu.neu.csye7374.Decorator.BikeDecorator;
+import edu.neu.csye7374.Decorator.GearDecorator;
+import edu.neu.csye7374.Decorator.HelmetDecorator;
+import edu.neu.csye7374.Decorator.Insurance;
 import edu.neu.csye7374.Facade.BikeDeliveryType;
 import edu.neu.csye7374.Facade.BikeOrderFacade;
 import edu.neu.csye7374.Factory.BikeFactory;
@@ -26,7 +30,7 @@ public class BikeDock implements BikeDockStateAPI {
     private List<Bike> itemList = new ArrayList<>();
     private List<Person> personList = new ArrayList<>();
     public static OfferStrategy usingStrategy = OfferStrategy.NONE;
-    private static final String FILE_NAME = "src/main/java/edu/neu/csye7374/input/team2input.txt";
+    private static final String FILE_NAME = "src/main/java/edu/neu/csye7374/data/NEUBikesData.txt";
 
     private BikeDockStateAPI openState = new DockOpen(this);
     private BikeDockStateAPI closeState = new DockClose(this);
@@ -128,65 +132,80 @@ public class BikeDock implements BikeDockStateAPI {
         FileUtil.getFileData(FILE_NAME);
 
         List<Bike> bikeList = new ArrayList<>();
-        // Builder Pattern and getting object of Builder using Factory and Singleton
-        // Pattern
-        System.out.println("***************************************************************************************");
-        System.out.println(
-                "Demonstration of Builder pattern. Delegating the responsibilty of creating Bikes objects to Bike Builder which implements build method and builds bike object for us");
-        System.out.println("Using Factory and singleton pattern to get only single instance of Bike Builder object");
-        BikeBuilder bikeBuilder = new BikeBuilder(1, "M100", 250, BikeCategory.RoadBikes, "Schnell");
+        System.out.println("\n");
+
+        System.out.println("\t" + ".".repeat(30) + "Pattern Demo Start" + ".".repeat(30));
+        System.out.println("");
+        System.out.println("------------ Builder ------- Eager Singleton ------- Factory Patterns used -------");
+        BikeBuilder bikeBuilder = new BikeBuilder(1, "Talon", 600, BikeCategory.RoadBikes, "GIANT BIKES");
         BikeAPI bike = BikeFactory.getInstance().getObject(bikeBuilder);
         bikeList.add((Bike) bike);
+        System.out.println("");
         System.out.println(bike);
         FileUtil.appendEntryToFile(FILE_NAME, bikeBuilder);
+        System.out.println("");
+        System.out.println("\t" + ".".repeat(30) + "Pattern Demo End" + ".".repeat(30));
 
-        // Prototype Pattern to clone the object of author
-        System.out.println("***************************************************************************************");
-        System.out.println("Demonstration of prototype pattern to clone the object of Manufacturer");
-        Manufacturer author = Manufacturer.getInstance().clone();
-        author.setManufacturerName("Schnell")
-                .setManufacturingYear(2021)
-                .setNoOfBikesReleased(250);
+        System.out.println("\n");
+        System.out.println("\t" + ".".repeat(30) + "Pattern Demo Start" + ".".repeat(30));
+        System.out.println("");
+        System.out.println("----------- Prototype ------------");
+        System.out.println("");
+        Manufacturer manufact = Manufacturer.getInstance();
+        Manufacturer man = manufact.clone();
+        man.setManufacturerName("Hercules")
+                .setManufacturingYear(2015)
+                .setNoOfBikesReleased(200);
+        System.out.println(man);
+        System.out.println("");
+        System.out.println("\t" + ".".repeat(30) + "Pattern Demo End" + ".".repeat(30));
+        System.out.println("\n");
 
-        // Adapter Pattern to adapt adapt author legacy code with Bike Interface
-        ManufacturerObjectAdapter manufacturerAdapter = new ManufacturerObjectAdapter(bike, author);
-
-        System.out.println(bike);
-        System.out.println("***************************************************************************************");
-        System.out.println(
-                "Demonstration of Adapter pattern to adapt manufacturer legacy class with Bike Interface and priting their object");
+        System.out.println("\t" + ".".repeat(30) + "Pattern Demo Start" + ".".repeat(30));
+        System.out.println("");
+        System.out.println("----------- Adapter Pattern using Bike ------------");
+        System.out.println("");
+        ManufacturerObjectAdapter manufacturerAdapter = new ManufacturerObjectAdapter(bike, man);
 
         System.out.println(manufacturerAdapter);
-        System.out.println("***************************************************************************************");
+        System.out.println("");
+        System.out.println("\t" + ".".repeat(30) + "Pattern Demo End" + ".".repeat(30));
+        System.out.println("\n");
 
-        // Demonstration of facade pattern and decorator pattern to decorate the bike
-        // object
-        System.out.println(
-                "Demonstration of Facade pattern and adding Decorator pattern to decorate bikes and adding it to our order list");
-        System.out.println(
-                "Demonstration of Observer pattern to notify the shipping cost and discount observer of changes as the number of our orders added into order list");
-
+        System.out.println("\t" + ".".repeat(30) + "Pattern Demo Start" + ".".repeat(30));
+        System.out.println("");
+        System.out.println("----------- Facade ----------- Decorator ---------- Observer ------------");
+        System.out.println("");
         BikeOrderFacade orderFacade = new BikeOrderFacade(bike);
         BikeOrder order = orderFacade.bikeOrder();
-
+        System.out.println("");
         System.out.println(order);
+        System.out.println("");
         order.setBikeDeliveryType(BikeDeliveryType.Delivery);
 
-        bikeBuilder = new BikeBuilder(2, "HighLand 26\"", 149.99, BikeCategory.HybridBikes, "Huffy");
+        bikeBuilder = new BikeBuilder(2, "Fuel EX", 750, BikeCategory.HybridBikes, "TREK BIKES");
         bike = BikeFactory.getInstance().getObject(bikeBuilder);
-        order.addBike(bike);
+        BikeDecorator gearBike = new GearDecorator(bike);
+        System.out.println(gearBike);
+        order.addBike(gearBike);
+        System.out.println("");
         System.out.println(order);
+        System.out.println("");
         bikeList.add((Bike) bike);
         FileUtil.appendEntryToFile(FILE_NAME, bikeBuilder);
 
-        bikeBuilder = new BikeBuilder(3, "BeauMont", 300, BikeCategory.RoadBikes, "Retrospec");
+        bikeBuilder = new BikeBuilder(3, "Atroz", 1200, BikeCategory.RoadBikes, "DIAMONDBACK BIKES");
         bike = BikeFactory.getInstance().getObject(bikeBuilder);
-        order.addBike(bike);
+        BikeDecorator insuranceBike = new Insurance(bike);
+        System.out.println(insuranceBike);
+        order.addBike(insuranceBike);
+        System.out.println("");
         System.out.println(order);
+        System.out.println("");
         bikeList.add((Bike) bike);
         FileUtil.appendEntryToFile(FILE_NAME, bikeBuilder);
 
-        bikeBuilder = new BikeBuilder(4, "Triban", 210, BikeCategory.CrossBikes, "Retrospec");
+        bikeBuilder = new BikeBuilder(4, "Stinson", 699, BikeCategory.CrossBikes, "MARIN BIKES");
         bike = BikeFactory.getInstance().getObject(bikeBuilder);
         order.addBike(bike);
         System.out.println(order);
@@ -204,44 +223,69 @@ public class BikeDock implements BikeDockStateAPI {
         order.addBike(bike);
         System.out.println(order);
         bikeList.add((Bike) bike);
-        System.out.println("***************************************************************************************");
+        System.out.println("");
+        System.out.println("\t" + ".".repeat(30) + "Pattern Demo End" + ".".repeat(30));
+        System.out.println("\n");
 
-        // Command Pattern
-        System.out.println("Demonstration of Command pattern to send the request for all bikes orders and print them");
-
+        System.out.println("\t" + ".".repeat(30) + "Pattern Demo Start" + ".".repeat(30));
+        System.out.println("");
+        System.out.println("----------- Command Pattern ------------");
+        System.out.println("");
         Invoker invoker = new Invoker();
+        System.out.println("######## Sold Bikes #########");
         invoker.placeBikeOrders(bikeList);
+        System.out.println("");
+        System.out.println("######## Rented Bikes #########");
         invoker.rentBikeOrders(bikeList);
-        System.out.println("***************************************************************************************");
+        System.out.println("");
+        System.out.println("\t" + ".".repeat(30) + "Pattern Demo End" + ".".repeat(30));
+        System.out.println("\n");
 
-        BikeDock bikeStr = new BikeDock("Northeastern");
+        System.out.println("\t" + ".".repeat(30) + "Pattern Demo Start" + ".".repeat(30));
+        System.out.println("");
+        System.out.println("----------- Factory ------------ Singleton ---------- EmployeeBuilder ----------");
+        System.out.println("");
+        BikeDock bikeStr = new BikeDock("NEU");
         EmployeeBuilder emplBuilder = new EmployeeBuilder(7, 27, "John", "Doe", 18.5);
         Employee empl = EmployeeFactory.getInstance().getObject(emplBuilder);
-        System.out
-                .println("Using Factory and singleton pattern to get only single instance of Employee Builder object");
         System.out.println(empl);
-        System.out.println("***************************************************************************************");
+        System.out.println("");
+        System.out.println("\t" + ".".repeat(30) + "Pattern Demo End" + ".".repeat(30));
+        System.out.println("\n");
 
-        // State Pattern
-        System.out.println(
-                "Demonstration of state pattern completed life cycle of order transitioning from ordered to delived state");
+        System.out.println("\t" + ".".repeat(30) + "Pattern Demo Start" + ".".repeat(30));
+        System.out.println("");
+        System.out.println("----------- State ------------");
+        System.out.println("");
 
+        System.out.println("Trying to confirm the order after the order is confirmed");
         order.bikeConfirmed_state();
+        System.out.println("Trying to deliver the order after the order is confirmed");
         order.bikeDelivered_state();
+        System.out.println("Trying to dispatch the order after the order is confirmed");
         order.bikeDeliveryStatus_state();
+        System.out.println("Trying to deliver the order after the order is dispatched");
         order.bikeDelivered_state();
+        System.out.println("Trying to deliver the order after the order is delivered");
         order.bikeDelivered_state();
-        System.out.println("***************************************************************************************");
-        // Strategy Pattern
-        System.out.println(
-                "Demonstration of strategy pattern to show different discounts applied to original price and final price after student and employee discounts ");
+        System.out.println("");
+        System.out.println("\t" + ".".repeat(30) + "Pattern Demo End" + ".".repeat(30));
+        System.out.println("\n");
+
+        System.out.println("\t" + ".".repeat(30) + "Pattern Demo Start" + ".".repeat(30));
+        System.out.println("");
+        System.out.println("----------- Strategy ------------");
+        System.out.println("");
         System.out.println("Bike before discount: \n" + bike);
         double price = 0;
         for (OfferStrategy strategy : BikeDock.getAlgorithmMap().keySet()) {
             bikeStr.setUsingStrategy(strategy);
             price = ((Bike) bike).runStrategy();
-            System.out.println("Bike price after discount during sale: " + strategy + price);
+            System.out.println("Bike price after discount during sale: " + strategy + " Price :" + price);
         }
+        System.out.println("");
+        System.out.println("\t" + ".".repeat(30) + "Pattern Demo End" + ".".repeat(30));
+        System.out.println("\n");
     }
 
 }

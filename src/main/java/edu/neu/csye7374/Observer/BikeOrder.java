@@ -200,7 +200,7 @@ public class BikeOrder implements BikeStatusStateAPI {
 
 	@Override
 	public String toString() {
-		return "BikeOrder [id=" + bikeId + ", itemCost=" + bikeBikeOrderCost + ", count=" + bikeCount + ", discount="
+		return "BikeOrder [id=" + bikeId + ", OrderCost=" + bikeBikeOrderCost + ", count=" + bikeCount + ", discount="
 				+ offerDiscount
 				+ ", shippingCost=" + shippingCost + "]";
 	}

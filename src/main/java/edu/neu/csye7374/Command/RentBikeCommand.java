@@ -3,7 +3,7 @@ package edu.neu.csye7374.Command;
 import edu.neu.csye7374.Bike;
 
 public class RentBikeCommand implements CommandAPI {
-    private static RentBikeCommand instance; // Lazy Singleton Factory Class
+    private static RentBikeCommand instance;
     private Bike bike;
 
     private RentBikeCommand() {

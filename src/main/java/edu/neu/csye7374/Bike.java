@@ -75,17 +75,17 @@ public class Bike implements BikeAPI {
     @Override
     public String toString() {
         return "Bike [bikeId=" + bikeId + ", bikeName=" + bikeName + ", bikePrice=" + bikePrice + ", bikeCategory="
-                + bikeCategory + ", bikeManufacturer=" + (String) bikeManufacturer + "]";
+                + bikeCategory + ", bikeManufacturer=" + (String) bikeManufacturer + " ]";
     }
 
     public String buyBike() {
 
-        return this.bikeName + " is bought";
+        return this.toString() + " is bought!!!!";
     }
 
     public String rentBike() {
-        this.bikePrice = this.bikePrice * 0.75;
-        return this.bikeId + " - " + this.bikeName + " is rented";
+        this.bikePrice = this.bikePrice * 0.05;
+        return this.toString() + " is rented!!";
     }
 
     public double runStrategy() {
@@ -99,10 +99,10 @@ public class Bike implements BikeAPI {
                 break;
             case CoupleOfferStrategy:
                 value = BikeDock.getAlgorithmMap().get(OfferStrategy.CoupleOfferStrategy).discountAmt(this);
-            break;
+                break;
             case NewMemberOfferStrategy:
                 value = BikeDock.getAlgorithmMap().get(OfferStrategy.NewMemberOfferStrategy).discountAmt(this);
-            break;
+                break;
             default:
                 value = bikePrice;
                 break;

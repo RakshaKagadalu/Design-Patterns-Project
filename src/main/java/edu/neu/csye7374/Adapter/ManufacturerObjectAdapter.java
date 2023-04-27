@@ -26,7 +26,7 @@ public class ManufacturerObjectAdapter implements BikeAPI {
 
     @Override
     public String toString() {
-        return "[" + manufacturer + "], [bike=" + bike + "]";
+        return "###### " + manufacturer + "#####, ##### Bike :" + bike + "#####";
     }
 
     @Override
@@ -38,7 +38,7 @@ public class ManufacturerObjectAdapter implements BikeAPI {
     @Override
     public int noOfBikesRented() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'noOfBikesRented'");
+        return bike.noOfBikesRented();
     }
 
 }

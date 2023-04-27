@@ -8,7 +8,7 @@ public class BikePriceObserver implements CheckoutObserverAPI {
 		double orderTotal = bikeorder.getBikeBikeOrderCost();
 		if (orderTotal >= 700) {
 			bikeorder.setOfferDiscount(30);
-		} else if (orderTotal >= 500) {
+		} else if (orderTotal >= 400) {
 			bikeorder.setOfferDiscount(15);
 		}
 	}

@@ -3,7 +3,7 @@ package edu.neu.csye7374.Command;
 import edu.neu.csye7374.*;
 
 public class BuyBikeCommand implements CommandAPI {
-    private static BuyBikeCommand instance; // Lazy Singleton Factory Class
+    private static BuyBikeCommand instance;
     private Bike bike;
 
     private BuyBikeCommand() {

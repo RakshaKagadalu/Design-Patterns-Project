@@ -2,7 +2,6 @@ package edu.neu.csye7374.Builder;
 
 import edu.neu.csye7374.Employee;
 import edu.neu.csye7374.Factory.EmployeeFactory;
-import edu.neu.csye7374.fileUtil.ConvertUtil;
 
 public class EmployeeBuilder implements BuilderAPI<Employee> {
     private int id;
@@ -62,11 +61,11 @@ public class EmployeeBuilder implements BuilderAPI<Employee> {
 
     public EmployeeBuilder(String s) {
         String[] tokens = s.split(",");
-        this.id = ConvertUtil.StringToInt(tokens[0]);
+        this.id = Integer.parseInt(tokens[0]);
         this.firstName = tokens[1];
         this.lastName = tokens[2];
-        this.age = ConvertUtil.StringToInt(tokens[3]);
-        this.wage = ConvertUtil.StringToDouble(tokens[4]);
+        this.age = Integer.parseInt(tokens[3]);
+        this.wage = Double.parseDouble(tokens[4]);
     }
 
     @Override

@@ -5,7 +5,7 @@ package edu.neu.csye7374.Adapter;
 public class Manufacturer implements Cloneable {
     private String manufacturerName;
     private int manufacturingYear;
-    private int noOfBikesReleased;
+    private int noOfBikesSold;
     private static Manufacturer instance;
 
     public Manufacturer() {
@@ -19,11 +19,11 @@ public class Manufacturer implements Cloneable {
         return instance;
     }
 
-    private Manufacturer(String manufacturerName, int manufacturingYear, int noOfBikesReleased) {
+    private Manufacturer(String manufacturerName, int manufacturingYear, int noOfBikesSold) {
         super();
         this.manufacturerName = manufacturerName;
         this.manufacturingYear = manufacturingYear;
-        this.noOfBikesReleased = noOfBikesReleased;
+        this.noOfBikesSold = noOfBikesSold;
     }
 
     public String getManufacturerName() {
@@ -44,24 +44,23 @@ public class Manufacturer implements Cloneable {
         return this;
     }
 
-    public int getNoOfBikesReleased() {
-        return noOfBikesReleased;
+    public int getNoOfBikesSold() {
+        return noOfBikesSold;
     }
 
     public Manufacturer setNoOfBikesReleased(int noOfBikesReleased) {
-        this.noOfBikesReleased = noOfBikesReleased;
+        this.noOfBikesSold = noOfBikesReleased;
         return this;
     }
 
     @Override
     public String toString() {
-        return "Author [manufacturerName=" + manufacturerName + ", manufacturingYear=" + manufacturingYear
-                + ", NumberOfBikesReleasedr=" + noOfBikesReleased + "]";
+        return "[ Manufacturer :" + manufacturerName + ", manufacturingYear :" + manufacturingYear
+                + ", NumberOfBikesSold :" + noOfBikesSold + " ]";
     }
 
     @Override
     public Manufacturer clone() {
-        // TODO Auto-generated method stub
         Manufacturer clone = null;
 
         try {

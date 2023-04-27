@@ -13,18 +13,18 @@ public class BikeConfirmed implements BikeStatusStateAPI {
 
     @Override
     public void bikeConfirmed_state() {
-        System.out.println("Error ... BikeOrder already in CONFIRMED State");
+        System.out.println("Sorry,  BikeOrder already in CONFIRMED State");
     }
 
     @Override
     public void bikeDeliveryStatus_state() {
         bikeorder.setState(bikeorder.getBikeOrderDispatched());
-        System.out.println("SUCCESS!! BikeOrder DISPATCHED");
+        System.out.println("Thank you for the confirmation, BikeOrder DISPATCHED");
     }
 
     @Override
     public void bikeDelivered_state() {
-        System.out.println("Error ... BikeOrder not yet DISPATCHED");
+        System.out.println("Sorry,  BikeOrder not yet DISPATCHED");
     }
 
 }

@@ -27,19 +27,18 @@ public class BikeDecorator implements BikeAPI {
 
 	@Override
 	public String toString() {
-		return "BikeDecorator [bikeDescription()=" + bikeDescription() + ", noOfBikesReleased()="
-				+ noOfBikesRented() + ", getDecoratedBike()=" + getDecoratedBike() + "]";
+		return "BikeDecorator [bikeDescription :" + bikeDescription() + ", "
+				+ " $ " + getDecoratedBike() + " $";
 	}
 
 	@Override
 	public Object getBikeManufacturer() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getBikeManufacturer'");
+		return this.decoratedBike.getBikeManufacturer();
 	}
 
 	@Override
 	public double getBikePrice() {
 		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getBikePrice'");
+		return this.decoratedBike.getBikePrice();
 	}
 }

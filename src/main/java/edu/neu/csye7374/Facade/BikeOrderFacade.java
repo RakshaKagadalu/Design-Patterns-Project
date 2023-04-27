@@ -28,9 +28,9 @@ public class BikeOrderFacade {
 
 	public BikeOrder bikeOrder() {
 		BikeOrder order = new BikeOrder();
-		BikeDecorator giftdecBike = new HelmetDecorator(bike);
-		System.out.println(giftdecBike);
-		order.addBike(giftdecBike);
+		BikeDecorator helmetBike = new HelmetDecorator(bike);
+		System.out.println(helmetBike);
+		order.addBike(helmetBike);
 		return order;
 	}
 
