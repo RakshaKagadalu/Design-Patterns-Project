@@ -2,7 +2,7 @@ package edu.neu.csye7374.Facade;
 
 import edu.neu.csye7374.BikeAPI;
 import edu.neu.csye7374.Decorator.BikeDecorator;
-import edu.neu.csye7374.Decorator.GiftDecorator;
+import edu.neu.csye7374.Decorator.HelmetDecorator;
 import edu.neu.csye7374.Observer.BikeOrder;
 
 public class BikeOrderFacade {
@@ -28,7 +28,7 @@ public class BikeOrderFacade {
 
 	public BikeOrder bikeOrder() {
 		BikeOrder order = new BikeOrder();
-		BikeDecorator giftdecBike = new GiftDecorator(bike);
+		BikeDecorator giftdecBike = new HelmetDecorator(bike);
 		System.out.println(giftdecBike);
 		order.addBike(giftdecBike);
 		return order;
