@@ -10,6 +10,7 @@ public class ManufacturerObjectAdapter implements BikeAPI {
     public ManufacturerObjectAdapter(BikeAPI bike, Manufacturer adaptee) {
         this.bike = bike;
         this.manufacturer = adaptee;
+        setbikeManufacturer(adaptee.getManufacturerName());
     }
 
     @Override
@@ -39,6 +40,12 @@ public class ManufacturerObjectAdapter implements BikeAPI {
     public int noOfBikesRented() {
         // TODO Auto-generated method stub
         return bike.noOfBikesRented();
+    }
+
+    @Override
+    public void setbikeManufacturer(String bikeManufacturer) {
+        // TODO Auto-generated method stub
+        this.bike.setbikeManufacturer(bikeManufacturer);
     }
 
 }

@@ -24,6 +24,7 @@ public class Bike implements BikeAPI {
         return String.class.cast(bikeManufacturer);
     }
 
+    @Override
     public void setbikeManufacturer(String bikeManufacturer) {
         this.bikeManufacturer = bikeManufacturer;
     }

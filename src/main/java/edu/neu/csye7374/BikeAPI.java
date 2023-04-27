@@ -5,6 +5,8 @@ public interface BikeAPI {
 
     Object getBikeManufacturer();
 
+    void setbikeManufacturer(String bikeManufacturer);
+
     int noOfBikesRented();
 
     double getBikePrice();

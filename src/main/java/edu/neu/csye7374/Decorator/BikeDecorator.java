@@ -41,4 +41,9 @@ public class BikeDecorator implements BikeAPI {
 		// TODO Auto-generated method stub
 		return this.decoratedBike.getBikePrice();
 	}
+
+	@Override
+	public void setbikeManufacturer(String bikeManufacturer) {
+
+	}
 }
