@@ -1,4 +1,4 @@
-package edu.neu.csye7374.Adapter;
+package edu.neu.csye7374;
 
 import edu.neu.csye7374.BikeAPI;
 

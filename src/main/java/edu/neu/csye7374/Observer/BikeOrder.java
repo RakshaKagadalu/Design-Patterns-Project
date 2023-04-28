@@ -5,7 +5,6 @@ import java.util.List;
 
 import edu.neu.csye7374.BikeAPI;
 import edu.neu.csye7374.Facade.BikeDeliveryType;
-import edu.neu.csye7374.Prototype.BikeShippingType;
 import edu.neu.csye7374.state_DP.BikeConfirmed;
 import edu.neu.csye7374.state_DP.BikeDelivered;
 import edu.neu.csye7374.state_DP.BikeDeliveryStatus;

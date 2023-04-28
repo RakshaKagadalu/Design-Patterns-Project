@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import edu.neu.csye7374.Adapter.Manufacturer;
-import edu.neu.csye7374.Adapter.ManufacturerObjectAdapter;
+import edu.neu.csye7374.Manufacturer;
+import edu.neu.csye7374.ManufacturerObjectAdapter;
 import edu.neu.csye7374.Builder.BikeBuilder;
 import edu.neu.csye7374.Builder.EmployeeBuilder;
 import edu.neu.csye7374.Command.Invoker;
@@ -82,7 +82,7 @@ public class BikeDock implements BikeDockStateAPI {
         BikeDock.usingStrategy = usingStrategy;
     }
 
-    public static Map<OfferStrategy, OfferStrategyAPI> getAlgorithmMap() {
+    public static Map<OfferStrategy, OfferStrategyAPI> getstrategyMap() {
         return strategyMap;
     }
 
@@ -278,7 +278,7 @@ public class BikeDock implements BikeDockStateAPI {
         System.out.println("");
         System.out.println("Bike before discount: \n" + bike);
         double price = 0;
-        for (OfferStrategy strategy : BikeDock.getAlgorithmMap().keySet()) {
+        for (OfferStrategy strategy : BikeDock.getstrategyMap().keySet()) {
             bikeStr.setUsingStrategy(strategy);
             price = ((Bike) bike).runStrategy();
             System.out.println("Bike price after discount during sale: " + strategy + " Price :" + price);

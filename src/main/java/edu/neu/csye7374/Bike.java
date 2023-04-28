@@ -93,16 +93,16 @@ public class Bike implements BikeAPI {
         double value = 0;
         switch (BikeDock.usingStrategy) {
             case StudentOfferStrategy:
-                value = BikeDock.getAlgorithmMap().get(OfferStrategy.StudentOfferStrategy).discountAmt(this);
+                value = BikeDock.getstrategyMap().get(OfferStrategy.StudentOfferStrategy).discountAmt(this);
                 break;
             case ExchangeOfferStrategy:
-                value = BikeDock.getAlgorithmMap().get(OfferStrategy.ExchangeOfferStrategy).discountAmt(this);
+                value = BikeDock.getstrategyMap().get(OfferStrategy.ExchangeOfferStrategy).discountAmt(this);
                 break;
             case CoupleOfferStrategy:
-                value = BikeDock.getAlgorithmMap().get(OfferStrategy.CoupleOfferStrategy).discountAmt(this);
+                value = BikeDock.getstrategyMap().get(OfferStrategy.CoupleOfferStrategy).discountAmt(this);
                 break;
             case NewMemberOfferStrategy:
-                value = BikeDock.getAlgorithmMap().get(OfferStrategy.NewMemberOfferStrategy).discountAmt(this);
+                value = BikeDock.getstrategyMap().get(OfferStrategy.NewMemberOfferStrategy).discountAmt(this);
                 break;
             default:
                 value = bikePrice;
